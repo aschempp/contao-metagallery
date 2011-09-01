@@ -21,7 +21,7 @@
  * Software Foundation website at <http://www.gnu.org/licenses/>.
  *
  * PHP version 5
- * @copyright  Andreas Schempp 2010
+ * @copyright  Andreas Schempp 2010-2011
  * @author     Andreas Schempp <andreas@schempp.ch>
  * @license    http://opensource.org/licenses/lgpl-3.0.html
  * @version    $Id$
@@ -38,6 +38,11 @@ class ContentMetaGallery extends ContentGallery
 	 */
 	protected function parseMetaFile($strPath, $blnIsFile=false)
 	{
+		if (in_array($strPath, $this->arrProcessed))
+		{
+			return;
+		}
+
 		if ($this->meta_txt == '')
 			return parent::parseMetaFile($strPath, $blnIsFile);
 		
